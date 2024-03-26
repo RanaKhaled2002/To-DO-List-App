@@ -1,0 +1,52 @@
+<section class="container py-5">
+    <div class="w-75 mx-auto my-5 py-5">
+        <div class="row g-5 p-4 my-3 bg-body-white shadow">
+
+
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <div>
+                    <img src="./assets//images/signin-image.jpg" alt="signup image">
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="p-5 m-5">
+                    <form (ngSubmit)="submit()" [formGroup]="loginForm">
+
+        
+                        <div class="mb=3">
+                            <label for="email">Email:</label>
+                            <input id="email" formControlName="email" class="form-control">
+                            <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger mt-2">
+                                <p *ngIf="loginForm.get('email')?.errors?.['required']">Email Is Requierd</p>
+                                <p *ngIf="loginForm.get('email')?.errors?.['email']">Email Valid Email</p>
+                            </div>
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="password">Password:</label>
+                            <div class="eyePass position-relative">
+                                <input #passwordInput id="password" type="password" formControlName="password" class="form-control">
+                                <span class="btn my-0 py-0 position-absolute" (click)="togglePassword(passwordInput)">
+                                    <i class="fa-solid fa-eye text-dark position-absolute "  *ngIf="inputType == 'password'" ></i>
+                                    <i class="fa-solid fa-eye-slash text-dark position-absolute "  *ngIf="inputType === 'text'" ></i>
+                                </span>
+                                <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger mt-2">
+                                    <p *ngIf="loginForm.get('password')?.errors?.['required']">Password Is Requierd</p>
+                                    <p *ngIf="loginForm.get('password')?.errors?.['pattern']">Enter Valid Password</p>
+                                </div>
+                            </div>
+                        </div>
+            
+            
+                        <h3 *ngIf="MessageError" class="alert alert-danger">{{MessageError}}</h3>
+                        <button [disabled]="loginForm.invalid" type="submit" class="bg-main2 p-2 rounded-3 pointer text-white  d-block ms-auto">Login <i *ngIf="checkCorrectData" class="fa-solid fa-spinner fa-spin"></i></button>
+            
+                    </form>
+                </div>
+            </div> 
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,72 @@
+$main-color:#800080;
+$bg-main:#FFC2C1;
+$shadow: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
+
+
+.fixed-left
+{
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    z-index: 9999 !important;
+}
+
+.text-main
+{
+    color: $main-color !important;
+}
+
+.active-link{
+    color: white !important;
+    background-color: $main-color !important;
+    border-radius: 5px !important;
+}
+
+.bg-main
+{
+    background-color: $bg-main;
+}
+
+.bg-main2
+{
+    background-color: $main-color;
+
+    &:disabled
+    {
+        background-color:rgb(128, 100, 128) ;
+        color: rgba(255, 255, 255, 0.573);
+        cursor: not-allowed;
+    }
+}
+
+.pointer
+{
+    cursor: pointer;
+}
+
+.eyePass span
+{   
+    top:10px ;
+    right: 20px;
+    z-index: 99999 !important;
+}
+
+.w-5
+{
+    width: 5% !important;
+}
+
+.btn-up
+{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:50%;
+    border:unset;
+}

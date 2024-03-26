@@ -1,0 +1,72 @@
+<section class="container py-5">
+    <div class="w-75 mx-auto my-5 py-5">
+        <div class="row g-5 bg-white shadow p-4 my-2">
+
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <form (ngSubmit)="submit()" [formGroup]="registerForm">
+
+                    <div class="mb-3">
+                        <label for="name">Name:</label>
+                        <input id="name" formControlName="name" class="form-control">
+                        <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched" class="alert alert-danger mt-2">
+                            <p *ngIf="registerForm.get('name')?.errors?.['required']">Name Is Requierd</p>
+                            <p *ngIf="registerForm.get('name')?.errors?.['minlength']">Min Length Is 3</p>
+                            <p *ngIf="registerForm.get('name')?.errors?.['maxlength']">Max Length Is 20</p>
+                        </div>
+                    </div>
+        
+                    <div class="mb=3">
+                        <label for="email">Email:</label>
+                        <input id="email" formControlName="email" class="form-control">
+                        <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert alert-danger mt-2">
+                            <p *ngIf="registerForm.get('email')?.errors?.['required']">Email Is Requierd</p>
+                            <p *ngIf="registerForm.get('email')?.errors?.['email']">Email Should Contain @ & .</p>
+                        </div>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="password">Password:</label>
+                        <div class="eyePass position-relative">
+                            <input #passwordInput id="password" type="password" formControlName="password" class="form-control">
+                            <span class="btn my-0 py-0 position-absolute" (click)="togglePassword(passwordInput)">
+                                <i class="fa-solid fa-eye text-dark position-absolute "  *ngIf="inputType == 'password'" ></i>
+                                <i class="fa-solid fa-eye-slash text-dark position-absolute "  *ngIf="inputType === 'text'" ></i>
+                            </span>
+                            <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger mt-2">
+                                <p *ngIf="registerForm.get('password')?.errors?.['required']">Password Is Requierd</p>
+                                <p *ngIf="registerForm.get('password')?.errors?.['pattern']">Minimum 8 characters, Maximum 16 characters, at least one capital letter , one number and one special character</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="age">Age:</label>
+                        <input id="age" formControlName="age" class="form-control">
+                        <div *ngIf="registerForm.get('age')?.errors && registerForm.get('age')?.touched" class="alert alert-danger mt-2">
+                            <p *ngIf="registerForm.get('age')?.errors?.['required']">Age Is Requierd</p>
+                            <p *ngIf="registerForm.get('age')?.errors?.['pattern']">Age Must Be +18</p>
+                        </div>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="phone">Phone:</label>
+                        <input id="phone" formControlName="phone" class="form-control">
+                        <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched" class="alert alert-danger mt-2">
+                            <p *ngIf="registerForm.get('phone')?.errors?.['required']">Phone Is Requierd</p>
+                            <p *ngIf="registerForm.get('phone')?.errors?.['pattern']">Enter Valid Phone Number</p>
+                        </div>
+                    </div>
+        
+                    <h3 *ngIf="MessageError" class="alert alert-danger">{{MessageError}}</h3>
+                    <button [disabled]="registerForm.invalid" type="submit" class="bg-main2 p-2 rounded-3 pointer text-white  d-block ms-auto">Signup <i *ngIf="checkCorrectData" class="fa-solid fa-spinner fa-spin"></i></button>
+        
+                </form>
+            </div>
+
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <img src="./assets//images/signup-image.jpg" alt="signup image">
+            </div>
+
+        </div>
+    </div>
+</section>

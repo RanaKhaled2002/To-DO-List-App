@@ -1,0 +1,94 @@
+<section class="container p-5">
+    <div class="p-5">
+        <div class="row">
+
+            <div  *ngIf="list.length > 0; else error" class="col-md-12">
+                <div *ngFor="let list of list; let i =index" class="bg-body-tertiary rounded-5 shadow p-4 position-relative mb-3">
+                    <h1 class="text-main">{{list.title}}</h1>
+                    <p>{{list.content}}</p>
+                    <div class="position-absolute end-0 top-50">
+                        <i (click)="update($any(list._id),i,list)" data-bs-toggle="modal" data-bs-target="#updateModal" class="fa-solid fa-pen-to-square pe-3 text-primary pointer"></i>
+                        <i (click)="removeList($any(list._id),i)" class="fa-solid fa-trash pe-3 text-danger pointer"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="p-3">
+                  <button data-bs-toggle="modal" data-bs-target="#addModal" class="border-0 d-block ms-auto bg-transparent"><i class="fa-solid fa-circle-plus fa-3x text-main "></i></button>
+                </div>
+            </div>
+        </div>    
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form (ngSubmit)="addList()" [formGroup]="addForm">
+
+            
+                    <div class="mb=3">
+                        <label for="title">Title:</label>
+                        <input id="title" formControlName="title" class="form-control">
+                    </div>
+        
+                    <div class="mb=3">
+                        <label for="content">Content:</label>
+                        <input id="content" formControlName="content" class="form-control">
+                    </div>
+        
+        
+                    <h3 *ngIf="MessageError" class="alert alert-danger">{{MessageError}}</h3>
+                    <button [disabled]="addForm.invalid" type="submit" class="bg-main2 p-2 mt-2 rounded-3 pointer text-white  d-block ms-auto">Add <i *ngIf="checkCorrectData" class="fa-solid fa-spinner fa-spin"></i></button>
+        
+                </form>
+
+            </div>
+        </div>
+        </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form (ngSubmit)="updateList()" [formGroup]="updateForm">
+
+        
+                <div class="mb=3">
+                    <label for="title">Title:</label>
+                    <input id="title" formControlName="title" class="form-control">
+                </div>
+    
+                <div class="mb=3">
+                    <label for="content">Content:</label>
+                    <input id="content" formControlName="content" class="form-control">
+                </div>
+    
+    
+                <h3 *ngIf="MessageError" class="alert alert-danger">{{MessageError}}</h3>
+                <button [disabled]="updateForm.invalid" type="submit" class="bg-main2 p-2 mt-2 rounded-3 pointer text-white  d-block ms-auto">Update <i *ngIf="checkCorrectData" class="fa-solid fa-spinner fa-spin"></i></button>
+    
+            </form>
+
+        </div>
+    </div>
+    </div>
+</div>
+
+<ng-template #error>
+    
+    <h1 class="text-center text-main">No To Do List Avaliable...</h1>
+      
+</ng-template>
